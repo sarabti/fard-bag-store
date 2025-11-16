@@ -1,0 +1,9 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "LocaleLayout": {
+    "title": "Fard Bag Store",
+    "description": "A modern store built with Next.js, ShadCN, and Prisma."
+  }
+}
