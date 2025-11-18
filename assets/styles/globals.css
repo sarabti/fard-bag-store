@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
 /* wrapper */
 .wrapper {
   max-width: 80rem; /* max-w-7xl */
