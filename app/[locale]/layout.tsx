@@ -1,19 +1,28 @@
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from "next-intl/server";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import "@/assets/styles/globals.css";
 import { notFound } from "next/navigation";
 import { routing } from "@/app/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
+import { SERVER_URL } from "@/lib/constants";
 
 export const generateStaticParams = () => [{ locale: "fa" }, { locale: "en" }];
- 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}) {
   const { locale } = await params;
-  const t = await getTranslations({locale, namespace: 'metadata'});
- 
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
   return {
-    title: t('title'),
-    description: t('description')
+    title: {
+      template: `%s | ${t("title")}`,
+      default: t("title"),
+    },
+    description: t("description"),
+    metadataBase: new URL(SERVER_URL),
   };
 }
 
