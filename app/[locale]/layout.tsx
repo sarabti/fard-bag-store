@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/app/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { SERVER_URL } from "@/lib/constants";
+import { ThemeProvider } from "next-themes";
 
 export const generateStaticParams = () => [{ locale: "fa" }, { locale: "en" }];
 
@@ -43,9 +44,21 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir={locale === "fa" ? "rtl" : "ltr"}>
+    <html
+      lang={locale}
+      dir={locale === "fa" ? "rtl" : "ltr"}
+    >
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

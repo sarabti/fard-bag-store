@@ -2,5 +2,9 @@
   "appName": "فروشگاه کیف فرد",
   "shoppingCart": "سبد خرید",
   "signIn": "ورود",
-  "copyRightText": "تمامی حقوق محفوظ است"
+  "copyRightText": "تمامی حقوق محفوظ است",
+  "appearance": "ظاهر",
+  "systemMode": "سیستم",
+  "lightMode": "روشن",
+  "darkMode": "تیره"
 }

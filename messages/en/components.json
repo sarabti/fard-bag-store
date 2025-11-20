@@ -2,5 +2,9 @@
   "appName": "Fard Bag Store",
   "shoppingCart": "Cart",
   "signIn": "Sign In",
-  "copyRightText": "All rights reserved"
+  "copyRightText": "All rights reserved",
+  "appearance": "Appearance",
+  "systemMode": "System",
+  "lightMode": "Light",
+  "darkMode": "Dark"
 }
