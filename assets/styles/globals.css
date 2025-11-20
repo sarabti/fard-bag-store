@@ -18,14 +18,14 @@ html[dir="ltr"] {
   max-width: 80rem; /* max-w-7xl */
   width: 100%;
   padding: 1.25rem; /* p-5 */
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }
 
 @media (min-width: 768px) { /* md */
   .wrapper {
-    padding-left: 2.5rem; /* md:px-10 */
-    padding-right: 2.5rem;
+    padding-inline-start: 2.5rem; /* md:px-10 */
+    padding-inline-left: 2.5rem;
   }
 }
 
