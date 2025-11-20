@@ -1,3 +1,6 @@
+import Footer from "@/components/footer";
+import Header from "@/components/shared/header";
+
 export default function LocaleLayout({
   children,
 }: Readonly<{
@@ -5,7 +8,9 @@ export default function LocaleLayout({
 }>) {
   return (
     <div className="flex h-screen flex-col">
+      <Header />
       <main className="flex-1 wrapper">{children}</main>
+      <Footer />
     </div>
   );
 }
