@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.not-found-container,
+.not-found-card,
+.not-found-title,
+.not-found-description,
+.not-found-button {
+  font-family:
+    /* Preferred Persian Web Font (if installed locally or via @font-face) */ Vazirmatn,
+    IRANSans, /* Tailwind UI Sans family */ ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    Tahoma, sans-serif;
+}
+
+.not-found-container {
+  @apply min-h-screen flex flex-col justify-center items-center p-5 bg-white;
+}
+
+.not-found-card {
+  @apply mt-6 p-6 w-full max-w-md text-center rounded-xl shadow-md bg-white;
+}
+
+.not-found-title {
+  @apply text-3xl font-bold mb-4;
+}
+
+.not-found-description {
+  @apply mb-5 leading-relaxed;
+}
+
+.not-found-button {
+  @apply inline-block px-5 py-2 rounded-lg border border-gray-700 text-gray-700 font-medium hover:bg-gray-100 transition;
+}

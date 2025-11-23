@@ -9,9 +9,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
     : routing.defaultLocale;
 
   const messages = {
-    home: (await import(`../../messages/${locale}/pages/home.json`)).default,
-    components: (await import(`../../messages/${locale}/components.json`)).default,
     metadata: (await import(`../../messages/${locale}/metadata.json`)).default,
+    components: (await import(`../../messages/${locale}/components.json`))
+      .default,
+    home: (await import(`../../messages/${locale}/pages/home.json`)).default,
+    notFound: (await import(`../../messages/${locale}/pages/not-found.json`))
+      .default,
   };
 
   return {

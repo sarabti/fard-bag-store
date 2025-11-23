@@ -16,8 +16,8 @@ const Header = () => {
             <Image
               priority={true}
               src="/images/logo.svg"
-              width={48}
-              height={48}
+              width={60}
+              height={60}
               alt={`${t("appName")} logo`}
             />
             <span className="hidden lg:block font-bold text-2xl ms-3">

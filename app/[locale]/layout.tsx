@@ -19,10 +19,10 @@ export async function generateMetadata({
 
   return {
     title: {
-      template: `%s | ${t("title")}`,
-      default: t("title"),
+      template: `%s | ${t("appName")}`,
+      default: t("appName"),
     },
-    description: t("description"),
+    description: t("appDescription"),
     metadataBase: new URL(SERVER_URL),
   };
 }
@@ -44,10 +44,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html
-      lang={locale}
-      dir={locale === "fa" ? "rtl" : "ltr"}
-    >
+    <html lang={locale} dir={locale === "fa" ? "rtl" : "ltr"}>
       <body>
         <NextIntlClientProvider>
           <ThemeProvider
