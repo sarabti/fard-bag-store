@@ -1,0 +1,67 @@
+import { EllipsisVertical, ShoppingCart, UserIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import Link from "next/link";
+import ModeToggle from "./mode-toggle";
+import { getLocale, getTranslations } from "next-intl/server";
+
+const Menu = async () => {
+  const t = await getTranslations("components");
+  const locale = await getLocale();
+
+  const side = locale === "fa" ? "left" : "right";
+
+  return (
+    <>
+      <div className="flex justify-end gap-3">
+        <nav className="hidden md:flex w-full max-w-xs gap-1">
+          <ModeToggle />
+          <Button asChild variant="ghost">
+            <Link href="/cart">
+              <ShoppingCart />
+              <span className="hidden lg:block ms-3">{t("shoppingCart")}</span>
+            </Link>
+          </Button>
+          <Button asChild>
+            <Link href="/sign-in">
+              <UserIcon />
+              {t("signIn")}
+            </Link>
+          </Button>
+        </nav>
+        <nav className="md:hidden">
+          <Sheet>
+            <SheetTrigger className="align-middle">
+              <EllipsisVertical />
+            </SheetTrigger>
+            <SheetContent className="flex flex-col items-start p-5" side={side}>
+              <SheetTitle>{t("headerNavMenuTitle")}</SheetTitle>
+              <ModeToggle />
+              <Button asChild variant="ghost">
+                <Link href="/cart">
+                  <ShoppingCart />
+                  {t("shoppingCart")}
+                </Link>
+              </Button>
+              <Button asChild>
+                <Link href="/sign-in">
+                  <UserIcon />
+                  {t("signIn")}
+                </Link>
+              </Button>
+              <SheetDescription></SheetDescription>
+            </SheetContent>
+          </Sheet>
+        </nav>
+      </div>
+    </>
+  );
+};
+
+export default Menu;

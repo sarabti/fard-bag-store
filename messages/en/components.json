@@ -6,5 +6,6 @@
   "appearance": "Appearance",
   "systemMode": "System",
   "lightMode": "Light",
-  "darkMode": "Dark"
+  "darkMode": "Dark",
+  "headerNavMenuTitle": "Menu"
 }

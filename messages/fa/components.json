@@ -6,5 +6,6 @@
   "appearance": "ظاهر",
   "systemMode": "سیستم",
   "lightMode": "روشن",
-  "darkMode": "تیره"
+  "darkMode": "تیره",
+  "headerNavMenuTitle": "فهرست"
 }

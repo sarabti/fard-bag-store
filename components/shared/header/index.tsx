@@ -1,9 +1,7 @@
 import { useTranslations } from "next-intl";
-import { ShoppingCart, UserIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import ModeToggle from "./mode-toggle";
+import Menu from "./menu";
 
 const Header = () => {
   const t = useTranslations("components");
@@ -25,21 +23,7 @@ const Header = () => {
             </span>
           </Link>
         </div>
-        <div className="space-x-2">
-          <ModeToggle />
-          <Button asChild variant="ghost">
-            <Link href="/cart">
-              <ShoppingCart />
-              <span className="hidden lg:block ms-3">{t("shoppingCart")}</span>
-            </Link>
-          </Button>
-          <Button asChild>
-            <Link href="/sign-in">
-              <UserIcon />
-              {t("signIn")}
-            </Link>
-          </Button>
-        </div>
+        <Menu />
       </div>
     </header>
   );
