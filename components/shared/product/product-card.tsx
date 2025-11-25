@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLocale, useTranslations } from "next-intl";
+import ProductPrice from "./product-price";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ProductCard = ({ product }: { product: any }) => {
@@ -31,7 +32,7 @@ const ProductCard = ({ product }: { product: any }) => {
         <div className="flex-between gap-4">
           <p>{product.rating + " " + t("stars")}</p>
           {product.stock > 0 ? (
-            <p className="font-bold">${product.price}</p>
+            <ProductPrice price={Number(product.price)} />
           ) : (
             <p className="text-destructive">{t("outOfStock")}</p>
           )}
