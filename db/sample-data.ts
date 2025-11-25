@@ -1,14 +1,12 @@
 const sampleData = {
   products: [
     {
+      id: 1,
       name: {
         fa: "چمدان مسافرتی مدل 3020 لایت‌فور",
         en: "LiteFour Travel Suitcase Model 3020",
       },
-      slug: {
-        fa: "چمدان-مسافرتی-مدل-3020-لایت‌فور",
-        en: "LiteFour-travel-suitcase-model-3020",
-      },
+      slug: "LiteFour-travel-suitcase-model-3020",
       description: {
         fa: "چمدان هاردکیس با مقاومت بالا و چرخ‌های ۳۶۰ درجه",
         en: "Durable hardcase suitcase with 360-degree spinner wheels",
@@ -18,8 +16,8 @@ const sampleData = {
         en: "suitcase",
       },
       images: [
-        "/images/sample-products/p1-1.jpg",
-        "/images/sample-products/p1-2.jpg",
+        "/images/sample-products/p1-1.png",
+        "/images/sample-products/p1-2.png",
       ],
       price: 59.99,
       brand: "Polo",
@@ -30,14 +28,12 @@ const sampleData = {
       banner: "banner-1.jpg",
     },
     {
+      id: 2,
       name: {
         fa: "چمدان سایز بزرگ مدل 550 اسپرت‌لاین",
         en: "SportLine Large Size Suitcase Model 550",
       },
-      slug: {
-        fa: "چمدان-سایز-بزرگ-مدل-550-اسپرت‌لاین",
-        en: "SportLine-large-size-suitcase-model-550",
-      },
+      slug: "SportLine-large-size-suitcase-model-550",
       description: {
         fa: "چمدان سبک وزن با بدنه ABS و قفل TSA",
         en: "Lightweight suitcase with ABS body and TSA lock",
@@ -47,8 +43,8 @@ const sampleData = {
         en: "suitcase",
       },
       images: [
-        "/images/sample-products/p2-1.jpg",
-        "/images/sample-products/p2-2.jpg",
+        "/images/sample-products/p2-1.png",
+        "/images/sample-products/p2-2.png",
       ],
       price: 85.9,
       brand: "Brooks Brothers",
@@ -59,14 +55,12 @@ const sampleData = {
       banner: "banner-2.jpg",
     },
     {
+      id: 3,
       name: {
         fa: "چمدان کابین مدل 2100 فلکس‌تراول",
         en: "FlexTravel Cabin Suitcase Model 2100",
       },
-      slug: {
-        fa: "چمدان-کابین-مدل-2100-فلکس‌تراول",
-        en: "FlexTravel-cabin-suitcase-model-2100",
-      },
+      slug: "FlexTravel-cabin-suitcase-model-2100",
       description: {
         fa: "چمدان کابین سایز با جنس پلی‌کربنات ضد خش",
         en: "Cabin-size suitcase made of scratch-resistant polycarbonate",
@@ -76,8 +70,8 @@ const sampleData = {
         en: "suitcase",
       },
       images: [
-        "/images/sample-products/p3-1.jpg",
-        "/images/sample-products/p3-2.jpg",
+        "/images/sample-products/p3-1.png",
+        "/images/sample-products/p3-2.png",
       ],
       price: 99.95,
       brand: "Tommy Hilfiger",
@@ -88,14 +82,12 @@ const sampleData = {
       banner: null,
     },
     {
+      id: 4,
       name: {
         fa: "کوله پشتی مدل 120 اکسپلور",
         en: "Explore Backpack Model 120",
       },
-      slug: {
-        fa: "کوله-پشتی-مدل-120-اکسپلور",
-        en: "Explore-backpack-model-120",
-      },
+      slug: "Explore-backpack-model-120",
       description: {
         fa: "کوله پشتی سبک با فضای داخلی تفکیک‌شده و بندهای ارگونومیک",
         en: "Lightweight backpack with organized compartments and ergonomic straps",
@@ -105,8 +97,8 @@ const sampleData = {
         en: "backpack",
       },
       images: [
-        "/images/sample-products/p4-1.jpg",
-        "/images/sample-products/p4-2.jpg",
+        "/images/sample-products/p4-1.png",
+        "/images/sample-products/p4-2.png",
       ],
       price: 39.95,
       brand: "Calvin Klein",
@@ -117,14 +109,12 @@ const sampleData = {
       banner: null,
     },
     {
+      id: 5,
       name: {
         fa: "کوله پشتی لپ‌تاپ مدل 450 تکنوگارد",
         en: "Technoguard Laptop Backpack Model 450",
       },
-      slug: {
-        fa: "کوله-پشتی-لپتاپ-مدل-450-تکنوگارد",
-        en: "Technoguard-laptop-backpack-model-450",
-      },
+      slug: "Technoguard-laptop-backpack-model-450",
       description: {
         fa: "مناسب برای لپ‌تاپ ۱۵ اینچ با محفظه ضد ضربه و ضد آب",
         en: "Fits 15-inch laptops with shockproof and water-resistant compartment",
@@ -134,8 +124,8 @@ const sampleData = {
         en: "backpack",
       },
       images: [
-        "/images/sample-products/p5-1.jpg",
-        "/images/sample-products/p5-2.jpg",
+        "/images/sample-products/p5-1.png",
+        "/images/sample-products/p5-2.png",
       ],
       price: 79.99,
       brand: "Polo",
@@ -146,14 +136,12 @@ const sampleData = {
       banner: null,
     },
     {
+      id: 6,
       name: {
         fa: "کوله پشتی مسافرتی مدل 710 ترک‌تراول",
         en: "TrekTravel Hiking Backpack Model 710",
       },
-      slug: {
-        fa: "کوله-پشتی-مسافرتی-مدل-710-ترک‌تراول",
-        en: "TrekTravel-hiking-backpack-model-710",
-      },
+      slug: "TrekTravel-hiking-backpack-model-710",
       description: {
         fa: "کوله پشتی کوهنوردی با ظرفیت ۴۰ لیتر و پشتی مشبک تنفس‌پذیر",
         en: "40-liter hiking backpack with breathable mesh back panel",
@@ -163,8 +151,8 @@ const sampleData = {
         en: "backpack",
       },
       images: [
-        "/images/sample-products/p6-1.jpg",
-        "/images/sample-products/p6-2.jpg",
+        "/images/sample-products/p6-1.png",
+        "/images/sample-products/p6-2.png",
       ],
       price: 99.99,
       brand: "Polo",
