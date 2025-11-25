@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import ModeToggle from "./mode-toggle";
 import { getLocale, getTranslations } from "next-intl/server";
+import LocaleToggle from "./locale-toggle";
 
 const Menu = async () => {
   const t = await getTranslations("components");
@@ -22,6 +23,7 @@ const Menu = async () => {
       <div className="flex justify-end gap-3">
         <nav className="hidden md:flex w-full max-w-xs gap-1">
           <ModeToggle />
+          <LocaleToggle />
           <Button asChild variant="ghost">
             <Link href="/cart">
               <ShoppingCart />
