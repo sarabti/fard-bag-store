@@ -44,14 +44,18 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir={locale === "fa" ? "rtl" : "ltr"}>
-      <body>
+    <html
+      lang={locale}
+      dir={locale === "fa" ? "rtl" : "ltr"}
+      suppressHydrationWarning
+    >
+      <body suppressHydrationWarning>
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
+            enableSystem={true}
+            disableTransitionOnChange={true}
           >
             {children}
           </ThemeProvider>
