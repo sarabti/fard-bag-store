@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/app/i18n/navigation";
 import Menu from "./menu";
 
 const Header = () => {

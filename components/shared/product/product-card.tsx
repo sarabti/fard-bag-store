@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/app/i18n/navigation";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLocale, useTranslations } from "next-intl";

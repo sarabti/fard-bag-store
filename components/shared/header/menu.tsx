@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
-import Link from "next/link";
+import { Link } from "@/app/i18n/navigation";
 import ModeToggle from "./mode-toggle";
 import { getLocale, getTranslations } from "next-intl/server";
 import LocaleToggle from "./locale-toggle";
