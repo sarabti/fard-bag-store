@@ -1,14 +1,13 @@
 import Image from "next/image";
 import { Link } from "@/app/i18n/navigation";
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useLocale, useTranslations } from "next-intl";
 import ProductPrice from "./product-price";
+import { Locale, Product } from "@/types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ProductCard = ({ product }: { product: any }) => {
+const ProductCard = ({ product }: { product: Product }) => {
   const t = useTranslations("products");
-  const locale = useLocale();
+  const locale = (useLocale() ?? 'fa') as Locale;
 
   return (
     <Card className="w-full max-w-sm">

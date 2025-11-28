@@ -1,6 +1,7 @@
 import { LATEST_PRODUCTS_LIMIT } from '../constants';
 import { prisma } from '../prisma';
 import { convertToPlainObject } from '../utils';
+import { normalizeProduct } from './product.normalize';
 
 // Get the latest products
 export async function getLatestProducts() {
@@ -9,5 +10,7 @@ export async function getLatestProducts() {
     orderBy: { createdAt: 'desc' },
   });
 
-  return convertToPlainObject(data);
+  const normalizedData = data.map(normalizeProduct);
+
+  return convertToPlainObject(normalizedData);
 }
