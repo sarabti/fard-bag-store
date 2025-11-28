@@ -13,6 +13,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
     components: (await import(`../../messages/${locale}/components.json`))
       .default,
     products: (await import(`../../messages/${locale}/products.json`)).default,
+    productDetails: (
+      await import(`../../messages/${locale}/pages/product-details.json`)
+    ).default,
     home: (await import(`../../messages/${locale}/pages/home.json`)).default,
     notFound: (await import(`../../messages/${locale}/pages/not-found.json`))
       .default,
