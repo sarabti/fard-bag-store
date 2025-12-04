@@ -1,8 +1,11 @@
 import { z } from "zod";
 import { insertProductSchema } from "@/lib/validator";
 import { Decimal } from "@/lib/generated/prisma/internal/prismaNamespace";
+import { TranslationValues } from "next-intl";
 
 export type Locale = "en" | "fa";
+
+export type Translator = (key: string, values?: TranslationValues) => string;
 
 export type ProductInsert = z.infer<typeof insertProductSchema>;
 

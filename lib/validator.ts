@@ -1,3 +1,4 @@
+import { Translator } from "@/types";
 import { z } from "zod";
 
 export const insertProductSchema = z.object({
@@ -22,3 +23,12 @@ export const insertProductSchema = z.object({
   isFeatured: z.boolean().default(false),
   banner: z.string().nullable(),
 });
+
+// Schema for signing in a user
+export const signInFormSchema = (t: Translator) =>
+  z.object({
+    email: z
+      .email(t("validation.email.invalid"))
+      .min(3, t("validation.email.minLength", { min: 3 })),
+    password: z.string().min(3, t("validation.password.minLength", { min: 3 })),
+  });
