@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getTranslations } from "next-intl/server";
+import CredentialsSignInForm from './credentials-sign-in-form';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("auth");
@@ -42,7 +43,9 @@ const SignIn = async () => {
             {t("selectSignInMethod")}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">{/* FORM HERE */}</CardContent>
+        <CardContent className="space-y-4">
+          <CredentialsSignInForm />
+        </CardContent>
       </Card>
     </div>
   );
