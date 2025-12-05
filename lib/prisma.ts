@@ -1,14 +1,27 @@
 import "dotenv/config";
 import { PrismaClient } from "./generated/prisma/client";
-import { neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import ws from 'ws';
+import { neonConfig } from "@neondatabase/serverless";
+import { PrismaNeon } from "@prisma/adapter-neon";
+import ws from "ws";
+
+declare global {
+  var prisma: PrismaClient | undefined;
+}
 
 neonConfig.webSocketConstructor = ws;
 const connectionString = `${process.env.DATABASE_URL}`;
 
-const adapter = new PrismaNeon({connectionString});
+const adapter = new PrismaNeon({ connectionString });
 
-const prisma = new PrismaClient({ adapter });
+let prisma: PrismaClient;
+
+if (process.env.NODE_ENV === "production") {
+  prisma = new PrismaClient({ adapter });
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient({ adapter });
+  }
+  prisma = global.prisma;
+}
 
 export { prisma };
