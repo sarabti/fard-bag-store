@@ -5,9 +5,14 @@ import { signInFormSchema } from "../validator";
 import { getTranslations } from "next-intl/server";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 
+export type SignInState = {
+  success: boolean;
+  message: string;
+};
+
 // Sign in the user with credentials
 export async function signInWithCredentials(
-  prevState: unknown,
+  prevState: SignInState,
   formData: FormData
 ) {
   const t = await getTranslations("auth");
@@ -19,13 +24,13 @@ export async function signInWithCredentials(
 
     await signIn("credentials", user);
 
-    return { success: true, message: "Signed in successfully" };
+    return { success: true, message: t("response.signInSuccess") };
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
     }
 
-    return { success: false, message: "Invalid email or password" };
+    return { success: false, message: t("response.invalidCredentials") };
   }
 }
 

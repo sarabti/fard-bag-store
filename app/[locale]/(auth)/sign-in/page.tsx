@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getTranslations } from "next-intl/server";
-import CredentialsSignInForm from './credentials-sign-in-form';
+import CredentialsSignInForm from "./credentials-sign-in-form";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("auth");
@@ -21,9 +21,15 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const SignIn = async () => {
+const SignIn = async ({ params }: { params: { locale: string } }) => {
   const metaT = await getTranslations("metadata");
   const t = await getTranslations("auth");
+  const { locale } = await params;
+  const session = await auth();
+
+  if (session) {
+    return redirect({ href: "/", locale });
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
