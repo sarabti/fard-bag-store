@@ -22,9 +22,10 @@ export default async function NotFound() {
       <Image
         priority
         src="/images/logo.svg"
-        width={180}
-        height={180}
+        width={100}
+        height={100}
         alt={`${metaT("appName")} logo`}
+        className="w-60 h-auto"
       />
 
       <div className="not-found-card">

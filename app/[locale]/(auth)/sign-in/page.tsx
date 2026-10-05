@@ -42,6 +42,7 @@ const SignIn = async ({ params }: { params: { locale: string } }) => {
               width={100}
               height={100}
               alt={`${metaT("appName")} logo`}
+              className="w-40 h-auto"
             />
           </Link>
           <CardTitle className="text-center">{t("signIn")}</CardTitle>

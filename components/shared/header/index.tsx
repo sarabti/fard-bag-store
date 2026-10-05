@@ -17,6 +17,7 @@ const Header = () => {
               width={60}
               height={60}
               alt={`${t("appName")} logo`}
+              className="w-20 h-auto"
             />
             <span className="hidden lg:block font-bold text-2xl ms-3">
               {t("appName")}
