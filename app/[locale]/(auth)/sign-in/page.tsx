@@ -21,14 +21,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const SignIn = async ({ params }: { params: { locale: string } }) => {
+const SignIn = async ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{
+    callbackUrl?: string;
+  }>;
+}) => {
   const metaT = await getTranslations("metadata");
   const t = await getTranslations("auth");
   const { locale } = await params;
+  const { callbackUrl } = await searchParams;
+
   const session = await auth();
 
   if (session) {
-    return redirect({ href: "/", locale });
+    return redirect({ href: callbackUrl || "/", locale });
   }
 
   return (
