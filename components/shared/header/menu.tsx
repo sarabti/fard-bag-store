@@ -11,6 +11,7 @@ import { Link } from "@/app/i18n/navigation";
 import ModeToggle from "./mode-toggle";
 import { getLocale, getTranslations } from "next-intl/server";
 import LocaleToggle from "./locale-toggle";
+import UserButton from "./user-button";
 
 const Menu = async () => {
   const t = await getTranslations("components");
@@ -30,12 +31,7 @@ const Menu = async () => {
               <span className="hidden lg:block ms-3">{t("shoppingCart")}</span>
             </Link>
           </Button>
-          <Button asChild>
-            <Link href="/sign-in">
-              <UserIcon />
-              {t("signIn")}
-            </Link>
-          </Button>
+          <UserButton />
         </nav>
         <nav className="md:hidden">
           <Sheet>
@@ -51,12 +47,7 @@ const Menu = async () => {
                   {t("shoppingCart")}
                 </Link>
               </Button>
-              <Button asChild>
-                <Link href="/sign-in">
-                  <UserIcon />
-                  {t("signIn")}
-                </Link>
-              </Button>
+              <UserButton />
               <SheetDescription></SheetDescription>
             </SheetContent>
           </Sheet>
