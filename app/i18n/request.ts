@@ -18,6 +18,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
     ).default,
     home: (await import(`../../messages/${locale}/pages/home.json`)).default,
     auth: (await import(`../../messages/${locale}/pages/auth.json`)).default,
+    signUp: (await import(`../../messages/${locale}/pages/sign-up.json`))
+      .default,
     notFound: (await import(`../../messages/${locale}/pages/not-found.json`))
       .default,
   };
