@@ -25,18 +25,19 @@ export const insertProductSchema = z.object({
 });
 
 // Schema for signing up a user
+// todo: add translation
 export const signUpFormSchema = z
   .object({
-    name: z.string().min(3, 'Name must be at least 3 characters'),
-    email: z.string().min(3, 'Email must be at least 3 characters'),
-    password: z.string().min(3, 'Password must be at least 3 characters'),
+    name: z.string().min(3, "Name must be at least 3 characters"),
+    email: z.string().min(3, "Email must be at least 3 characters"),
+    password: z.string().min(3, "Password must be at least 3 characters"),
     confirmPassword: z
       .string()
-      .min(3, 'Confirm password must be at least 3 characters'),
+      .min(3, "Confirm password must be at least 3 characters"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ['confirmPassword'],
+    path: ["confirmPassword"],
   });
 
 // Schema for signing in a user
@@ -47,4 +48,3 @@ export const signInFormSchema = (t: Translator) =>
       .min(3, t("validation.email.minLength", { min: 3 })),
     password: z.string().min(3, t("validation.password.minLength", { min: 3 })),
   });
-

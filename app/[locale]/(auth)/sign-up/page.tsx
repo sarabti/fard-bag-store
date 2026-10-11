@@ -11,6 +11,7 @@ import {
 import { auth } from "@/auth";
 import { redirect } from "@/app/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import SignUpForm from "./sign-up-form";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("signUp");
@@ -59,7 +60,9 @@ const SignUp = async ({
             {t("createAccountDescription")}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">{/* FORM HERE */}</CardContent>
+        <CardContent className="space-y-4">
+          <SignUpForm />
+        </CardContent>
       </Card>
     </div>
   );

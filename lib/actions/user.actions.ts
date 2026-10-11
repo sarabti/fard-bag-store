@@ -43,6 +43,8 @@ export async function signOutUser() {
 
 // Register a new user
 export async function signUp(prevState: unknown, formData: FormData) {
+  const t = await getTranslations("signUp");
+
   try {
     const user = signUpFormSchema.parse({
       name: formData.get("name"),
@@ -68,7 +70,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
       password: plainPassword,
     });
 
-    return { success: true, message: "User created successfully" };
+    return { success: true, message: t("signUpSuccess") };
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
@@ -76,7 +78,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
 
     return {
       success: false,
-      message: "Something went wrong",
+      message: t("signUpFailure"),
     };
   }
 }

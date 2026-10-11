@@ -1,5 +1,26 @@
 {
   "pageTitle": "Sign Up",
   "createAccount": "Create Account",
-  "createAccountDescription": "Enter your information below to create your account"
+  "createAccountDescription": "Enter your information below to create your account",
+  "signUp": "Sign Up",
+  "submitting": "Submitting",
+  "alreadyHaveAccount": "Already have an account?",
+  "signIn": "Sign In",
+  "nameLabel": "Name",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "confirmPasswordLabel": "Confirm Password",
+  "response": {
+    "signUpSuccess": "User Registered successfully",
+    "signUpFailure": "Something went wrong"
+  },
+  "validation": {
+    "email": {
+      "invalid": "Invalid email address",
+      "minLength": "Email must be at least {{min}} characters"
+    },
+    "password": {
+      "minLength": "Password must be at least {{min}} characters"
+    }
+  }
 }
