@@ -36,7 +36,7 @@ export function formatError(error: unknown, locale: Locale): string {
     error.code === "P2002"
   ) {
     return locale === "fa"
-      ? "این مقدار قبلاً ثبت شده است"
+      ? "مقدار این فیلد قبلاً ثبت شده است"
       : "Field already exists";
   }
 
