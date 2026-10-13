@@ -2,10 +2,12 @@
 
 import { signIn, signOut } from "@/auth";
 import { signInFormSchema, signUpFormSchema } from "../validator";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { hashSync } from "bcrypt-ts-edge";
 import { prisma } from "@/lib/prisma";
+import { formatError } from "../utils";
+import { Locale } from "@/types";
 
 export type SignInState = {
   success: boolean;
@@ -75,10 +77,11 @@ export async function signUp(prevState: unknown, formData: FormData) {
     if (isRedirectError(error)) {
       throw error;
     }
+    const locale = await getLocale();
 
     return {
       success: false,
-      message: t("response.signUpFailure"),
+      message: formatError(error, locale as Locale),
     };
   }
 }
