@@ -46,7 +46,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
   const t = await getTranslations("signUp");
 
   try {
-    const user = signUpFormSchema.parse({
+    const user = signUpFormSchema(t).parse({
       name: formData.get("name"),
       email: formData.get("email"),
       confirmPassword: formData.get("confirmPassword"),
@@ -70,7 +70,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
       password: plainPassword,
     });
 
-    return { success: true, message: t("signUpSuccess") };
+    return { success: true, message: t("response.signUpSuccess") };
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
@@ -78,7 +78,7 @@ export async function signUp(prevState: unknown, formData: FormData) {
 
     return {
       success: false,
-      message: t("signUpFailure"),
+      message: t("response.signUpFailure"),
     };
   }
 }

@@ -2,7 +2,7 @@
   "pageTitle": "ثبت نام",
   "createAccount": "ایجاد حساب کاربری",
   "createAccountDescription": "برای ایجاد حساب کاربری لطفا فرم زیر را پر کنید.",
-    "signUp": "ثبت نام",
+  "signUp": "ثبت نام",
   "submitting": "در حال ایجاد کاربر",
   "alreadyHaveAccount": "آیا حساب کاربری دارید؟",
   "signIn": "ورود",
@@ -15,12 +15,19 @@
     "signUpFailure": "اشکالی رخ داده است"
   },
   "validation": {
+    "name": {
+      "minLength": "اسم باید حداقل {min} کاراکتر باشد"
+    },
     "email": {
       "invalid": "ایمیل نامعتبر است",
-      "minLength": "ایمل باید حداقل {{min}} کاراکتر باشد"
+      "minLength": "ایمیل باید حداقل {min} کاراکتر باشد"
     },
     "password": {
-      "minLength": "رمز عبور باید حداقل {{min}} کاراکتر باشد"
-    }
+      "minLength": "رمز عبور باید حداقل {min} کاراکتر باشد"
+    },
+    "confirmPassword": {
+      "minLength": "تکرار رمز عبور باید حداقل {min} کاراکتر باشد"
+    },
+    "passwordsDoNotMatch": "رمزهای عبور مطابقت ندارند"
   }
 }

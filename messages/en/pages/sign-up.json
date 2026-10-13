@@ -15,12 +15,19 @@
     "signUpFailure": "Something went wrong"
   },
   "validation": {
+    "name": {
+      "minLength": "Name must be at least {min} characters"
+    },
     "email": {
       "invalid": "Invalid email address",
-      "minLength": "Email must be at least {{min}} characters"
+      "minLength": "Email must be at least {min} characters"
     },
     "password": {
-      "minLength": "Password must be at least {{min}} characters"
-    }
+      "minLength": "Password must be at least {min} characters"
+    },
+    "confirmPassword": {
+      "minLength": "Confirm Password must be at least {min} characters"
+    },
+    "passwordsDoNotMatch": "Passwords do not match"
   }
 }
