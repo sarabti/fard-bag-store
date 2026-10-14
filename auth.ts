@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { compareSync } from "bcrypt-ts-edge";
 import type { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
@@ -36,7 +37,7 @@ export const config = {
         if (user && user.password) {
           const isMatch = compareSync(
             credentials.password as string,
-            user.password
+            user.password,
           );
           // If password is correct, return user object
           if (isMatch) {
@@ -54,13 +55,35 @@ export const config = {
     }),
   ],
   callbacks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async session({ session, user, trigger, token }: any) {
       session.user.id = token.sub;
+      session.user.name = token.name;
+      session.user.role = token.role;
+
       if (trigger === "update") {
         session.user.name = user.name;
       }
       return session;
+    },
+    async jwt({ token, user, trigger, session }: any) {
+      if (user) {
+        token.role = user.role;
+
+        if (user.name === "NO_NAME") {
+          token.name = user.email!.split("@")[0];
+
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { name: token.name },
+          });
+        }
+      }
+
+      if (session?.user.name && trigger === "update") {
+        token.name = session.user.name;
+      }
+
+      return token;
     },
   },
 } satisfies NextAuthConfig;
