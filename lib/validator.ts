@@ -50,3 +50,14 @@ export const signInFormSchema = (t: Translator) =>
       .min(3, t("validation.email.minLength", { min: 3 })),
     password: z.string().min(3, t("validation.password.minLength", { min: 3 })),
   });
+
+// Cart
+export const cartItemSchema = (t: Translator) =>
+  z.object({
+    productId: z.string().min(1, t("validation.productRequired")),
+    name: z.string().min(1, t("validation.nameRequired")),
+    slug: z.string().min(1, t("validation.slugRequired")),
+    qty: z.number().int().nonnegative(t("validation.quantityInteger")),
+    image: z.string().min(1, t("validation.slugRequired")),
+    price: z.number().int().nonnegative(t("validation.priceInteger")),
+  });
