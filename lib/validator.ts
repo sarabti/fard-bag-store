@@ -1,6 +1,11 @@
 import { Translator } from "@/types";
 import { z } from "zod";
 
+const currency = z.coerce
+  .number()
+  .min(10000, "Price must be at least 10,000")
+  .max(10000000000, "Price must not exceed 10,000,000,000");
+
 export const insertProductSchema = z.object({
   name_en: z.string().min(3, "Name must be at least 3 characters"),
   name_fa: z.string().min(3, "Name must be at least 3 characters"),
@@ -14,10 +19,7 @@ export const insertProductSchema = z.object({
   description_fa: z
     .string()
     .min(3, "Description must be at least 3 characters"),
-  price: z.coerce
-    .number()
-    .min(10000, "Price must be at least 10,000")
-    .max(10000000000, "Price must not exceed 10,000,000,000"),
+  price: currency,
   stock: z.coerce.number(),
   images: z.array(z.string()).min(1, "Product must have at least one image"),
   isFeatured: z.boolean().default(false),
@@ -52,12 +54,24 @@ export const signInFormSchema = (t: Translator) =>
   });
 
 // Cart
-export const cartItemSchema = (t: Translator) =>
-  z.object({
-    productId: z.string().min(1, t("validation.productRequired")),
-    name: z.string().min(1, t("validation.nameRequired")),
-    slug: z.string().min(1, t("validation.slugRequired")),
-    qty: z.number().int().nonnegative(t("validation.quantityInteger")),
-    image: z.string().min(1, t("validation.slugRequired")),
-    price: z.number().int().nonnegative(t("validation.priceInteger")),
-  });
+// TODO: add translation
+export const cartItemSchema = z.object({
+  productId: z.string().min(1, "Product is required"),
+  name: z.string().min(1, "Name is required"),
+  slug: z.string().min(1, "Slug is required"),
+  qty: z.number().int().nonnegative("Quantity must be a non-negative number"),
+  image: z.string().min(1, "Image is required"),
+  price: currency,
+});
+
+// Cart item insert
+// TODO: add translation
+export const insertCartSchema = z.object({
+  items: z.array(cartItemSchema),
+  itemsPrice: currency,
+  totalPrice: currency,
+  shippingPrice: currency,
+  taxPrice: currency,
+  sessionCartId: z.string().min(1, "Session cart id is required"),
+  userId: z.string().optional().nullable(),
+});

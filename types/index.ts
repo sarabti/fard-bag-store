@@ -1,8 +1,11 @@
 import { z } from "zod";
-import { insertProductSchema } from "@/lib/validator";
+import {
+  cartItemSchema,
+  insertCartSchema,
+  insertProductSchema,
+} from "@/lib/validator";
 import { Decimal } from "@/lib/generated/prisma/internal/prismaNamespace";
 import { TranslationValues } from "next-intl";
-
 export type Locale = "en" | "fa";
 
 export type Translator = (key: string, values?: TranslationValues) => string;
@@ -39,3 +42,6 @@ export type Product = Omit<
     en: string;
   };
 };
+
+export type Cart = z.infer<typeof insertCartSchema>;
+export type CartItem = z.infer<typeof cartItemSchema>;
