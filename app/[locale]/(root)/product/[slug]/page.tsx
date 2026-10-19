@@ -2,12 +2,12 @@ import { notFound } from "next/navigation";
 import ProductPrice from "@/components/shared/product/product-price";
 import { Card, CardContent } from "@/components/ui/card";
 import { getProductBySlug } from "@/lib/actions/product.actions";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Locale } from "@/types";
 import ProductImages from "@/components/shared/product/product-images";
+import AddToCart from "@/components/shared/product/add-to-cart";
 
 export async function generateMetadata({
   params,
@@ -89,7 +89,16 @@ const ProductDetailsPage = async (props: {
                 </div>
                 {product.stock > 0 && (
                   <div className="flex-center">
-                    <Button className="w-full">{t("addToCart")}</Button>
+                    <AddToCart
+                      item={{
+                        productId: product.id,
+                        name: product.name,
+                        slug: product.slug,
+                        price: product.price,
+                        qty: 1,
+                        image: product.images![0],
+                      }}
+                    />
                   </div>
                 )}
               </CardContent>

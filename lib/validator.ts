@@ -57,7 +57,8 @@ export const signInFormSchema = (t: Translator) =>
 // TODO: add translation
 export const cartItemSchema = z.object({
   productId: z.string().min(1, "Product is required"),
-  name: z.string().min(1, "Name is required"),
+  name_en: z.string().min(3, "Name must be at least 3 characters"),
+  name_fa: z.string().min(3, "Name must be at least 3 characters"),
   slug: z.string().min(1, "Slug is required"),
   qty: z.number().int().nonnegative("Quantity must be a non-negative number"),
   image: z.string().min(1, "Image is required"),

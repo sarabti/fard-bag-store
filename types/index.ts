@@ -44,4 +44,13 @@ export type Product = Omit<
 };
 
 export type Cart = z.infer<typeof insertCartSchema>;
-export type CartItem = z.infer<typeof cartItemSchema>;
+export type CartItem = Omit<
+  z.infer<typeof cartItemSchema>,
+  "name_fa" | "name_en" | "price"
+> & {
+  name: {
+    fa: string;
+    en: string;
+  };
+  price: bigint;
+};
