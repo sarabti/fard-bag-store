@@ -6,6 +6,7 @@ import { routing } from "@/app/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { SERVER_URL } from "@/lib/constants";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
 
 export const generateStaticParams = () => [{ locale: "fa" }, { locale: "en" }];
 
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
             disableTransitionOnChange={true}
           >
             {children}
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
