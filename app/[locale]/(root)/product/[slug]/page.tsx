@@ -72,7 +72,7 @@ const ProductDetailsPage = async (props: {
           {/* Action Column */}
           <div>
             <Card>
-              <CardContent className="p-4">
+              <CardContent className="px-4">
                 <div className="mb-2 flex flex-row flex-wrap justify-between">
                   <div className="me-1">{t("price")}</div>
                   <div className="-mt-2">
