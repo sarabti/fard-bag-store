@@ -25,15 +25,6 @@ export const addItemToCart = async (data: CartItem) => {
     });
     if (!product) throw new Error("Product not found");
 
-    // Testing
-    console.log({
-      "Session Cart ID": sessionCartId,
-      "User ID": userId,
-      "Item Requested": item,
-      "Product Found": product,
-      cart: cart,
-    });
-
     return {
       success: true,
       message: "Testing Cart",
