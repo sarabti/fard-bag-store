@@ -6,9 +6,11 @@ import { auth } from "@/auth";
 import { getLocale } from "next-intl/server";
 import { convertToPlainObject, formatError, round2 } from "../utils";
 import { prisma } from "@/lib/prisma";
-import { cartItemSchema } from "../validator";
+import { cartItemSchema, insertCartSchema } from "../validator";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 
+// TODO: Check logic
 const calcPrice = (items: z.infer<typeof cartItemSchema>[]) => {
   const itemsPrice = round2(
       items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0),
@@ -24,6 +26,7 @@ const calcPrice = (items: z.infer<typeof cartItemSchema>[]) => {
   };
 };
 
+// TODO: Add tranlation
 export const addItemToCart = async (data: CartItem) => {
   const locale = await getLocale();
 
@@ -34,12 +37,33 @@ export const addItemToCart = async (data: CartItem) => {
     const session = await auth();
     const userId = session?.user?.id as string | undefined;
     const cart = await getMyCart();
+
     // Parse and validate submitted item data
     const item = cartItemSchema.parse(data);
     const product = await prisma.product.findFirst({
       where: { id: item.productId },
     });
     if (!product) throw new Error("Product not found");
+
+    if (!cart) {
+      // Create new cart object
+      const newCart = insertCartSchema.parse({
+        userId: userId,
+        items: [item],
+        sessionCartId: sessionCartId,
+        ...calcPrice([item]),
+      });
+      await prisma.cart.create({
+        data: newCart,
+      });
+
+      revalidatePath(`/product/${product.slug}`);
+
+      return {
+        success: true,
+        message: "Item added to cart successfully",
+      };
+    }
 
     return {
       success: true,
