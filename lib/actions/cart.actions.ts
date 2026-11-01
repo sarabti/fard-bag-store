@@ -26,7 +26,7 @@ const calcPrice = (items: z.infer<typeof cartItemSchema>[]) => {
   };
 };
 
-// TODO: Add tranlation
+// TODO: Add translation
 export const addItemToCart = async (data: CartItem) => {
   const locale = await getLocale();
 
@@ -62,6 +62,46 @@ export const addItemToCart = async (data: CartItem) => {
       return {
         success: true,
         message: "Item added to cart successfully",
+      };
+    } else {
+      // Check for existing item in cart
+      const cartItems = z.array(cartItemSchema).parse(cart.items);
+
+      const existItem = cartItems.find((x) => x.productId === item.productId);
+      // If not enough stock, throw error
+      if (existItem) {
+        if (product.stock < existItem.qty + 1) {
+          throw new Error("Not enough stock");
+        }
+
+        cartItems.find((x) => x.productId === item.productId)!.qty =
+          existItem.qty + 1;
+      } else {
+        // If stock, add item to cart
+        if (product.stock < 1) throw new Error("Not enough stock");
+        cart.items.push(item);
+      }
+
+      const prices = calcPrice(cartItems);
+
+      await prisma.cart.update({
+        where: { id: cart.id },
+        data: {
+          items: cartItems,
+          itemsPrice: BigInt(prices.itemsPrice),
+          shippingPrice: BigInt(prices.shippingPrice),
+          taxPrice: BigInt(prices.taxPrice),
+          totalPrice: BigInt(prices.totalPrice),
+        },
+      });
+
+      revalidatePath(`/product/${product.slug}`);
+      // TODO: Add translation
+      return {
+        success: true,
+        message: `${product.name_en} ${
+          existItem ? "updated in" : "added to"
+        } cart successfully`,
       };
     }
 
