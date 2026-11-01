@@ -3,6 +3,7 @@ import { z } from "zod";
 
 const currency = z.coerce
   .number()
+  .int("Price must be an integer")
   .min(10000, "Price must be at least 10,000")
   .max(10000000000, "Price must not exceed 10,000,000,000");
 
@@ -55,6 +56,7 @@ export const signInFormSchema = (t: Translator) =>
 
 // Cart
 // TODO: add translation
+// TODO: names can be object
 export const cartItemSchema = z.object({
   productId: z.string().min(1, "Product is required"),
   name_en: z.string().min(3, "Name must be at least 3 characters"),
