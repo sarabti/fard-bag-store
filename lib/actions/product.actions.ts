@@ -1,7 +1,6 @@
 import { LATEST_PRODUCTS_LIMIT } from "../constants";
 import { prisma } from "../prisma";
 import { convertToPlainObject } from "../utils";
-import { normalizeProduct } from "./product.normalize";
 
 // Get the latest products
 export async function getLatestProducts() {
@@ -10,9 +9,7 @@ export async function getLatestProducts() {
     orderBy: { createdAt: "desc" },
   });
 
-  const normalizedData = data.map(normalizeProduct);
-
-  return convertToPlainObject(normalizedData);
+  return convertToPlainObject(data);
 }
 
 // Get single product by slug
@@ -20,7 +17,6 @@ export async function getProductBySlug(slug: string) {
   const data = await prisma.product.findFirst({
     where: { slug: slug },
   });
-  const normalizedData = data ? normalizeProduct(data) : null;
 
-  return convertToPlainObject(normalizedData);
+  return convertToPlainObject(data);
 }

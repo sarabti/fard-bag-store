@@ -8,14 +8,11 @@ datasource db {
 }
 
 model Product {
-  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name_fa        String
-  name_en        String
-  slug           String   @unique(map: "product_slug_idx")
-  description_fa String
-  description_en String
-  category_fa    String
-  category_en    String
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        Json     @db.Json
+  slug        String   @unique(map: "product_slug_idx")
+  description Json     @db.Json
+  category    Json     @db.Json
   images         String[]
   brand          String
   stock          Int
