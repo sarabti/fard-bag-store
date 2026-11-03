@@ -7,24 +7,33 @@ const currency = z.coerce
   .min(10000, "Price must be at least 10,000")
   .max(10000000000, "Price must not exceed 10,000,000,000");
 
+const localizedMinMessage = (min: number) =>
+  `Must be at least ${min} characters`;
+
+export const localizedStringSchema = z.object({
+  fa: z.string().min(3, localizedMinMessage(3)),
+  en: z.string().min(3, localizedMinMessage(3)),
+});
+
 export const insertProductSchema = z.object({
-  name_en: z.string().min(3, "Name must be at least 3 characters"),
-  name_fa: z.string().min(3, "Name must be at least 3 characters"),
+  name: localizedStringSchema,
   slug: z.string().min(3, "Slug must be at least 3 characters"),
-  category_en: z.string().min(3, "Category must be at least 3 characters"),
-  category_fa: z.string().min(3, "Category must be at least 3 characters"),
+  category: localizedStringSchema,
   brand: z.string().min(3, "Brand must be at least 3 characters"),
-  description_en: z
-    .string()
-    .min(3, "Description must be at least 3 characters"),
-  description_fa: z
-    .string()
-    .min(3, "Description must be at least 3 characters"),
+  description: localizedStringSchema,
   price: currency,
   stock: z.coerce.number(),
   images: z.array(z.string()).min(1, "Product must have at least one image"),
   isFeatured: z.boolean().default(false),
   banner: z.string().nullable(),
+});
+
+export const productSchema = insertProductSchema.extend({
+  id: z.string(),
+  createdAt: z.coerce.date(),
+  rating: z.coerce.number(),
+  numReviews: z.number(),
+  price: z.coerce.bigint(),
 });
 
 // Schema for signing up a user
@@ -56,11 +65,9 @@ export const signInFormSchema = (t: Translator) =>
 
 // Cart
 // TODO: add translation
-// TODO: names can be object
 export const cartItemSchema = z.object({
   productId: z.string().min(1, "Product is required"),
-  name_en: z.string().min(3, "Name must be at least 3 characters"),
-  name_fa: z.string().min(3, "Name must be at least 3 characters"),
+  name: localizedStringSchema,
   slug: z.string().min(1, "Slug is required"),
   qty: z.number().int().nonnegative("Quantity must be a non-negative number"),
   image: z.string().min(1, "Image is required"),

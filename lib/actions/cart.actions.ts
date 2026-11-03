@@ -6,7 +6,11 @@ import { auth } from "@/auth";
 import { getLocale } from "next-intl/server";
 import { convertToPlainObject, formatError, round2 } from "../utils";
 import { prisma } from "@/lib/prisma";
-import { cartItemSchema, insertCartSchema } from "../validator";
+import {
+  cartItemSchema,
+  insertCartSchema,
+  localizedStringSchema,
+} from "../validator";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 
@@ -99,7 +103,7 @@ export const addItemToCart = async (data: CartItem) => {
       // TODO: Add translation
       return {
         success: true,
-        message: `${product.name_en} ${
+        message: `${localizedStringSchema.parse(product.name).en} ${
           existItem ? "updated in" : "added to"
         } cart successfully`,
       };
